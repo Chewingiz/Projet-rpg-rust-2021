@@ -19,6 +19,9 @@ use termion::{
     raw::IntoRawMode,
     clear,
 };
+
+use serde_json::from_str;
+
 struct Perso{ // la structure de votre héro chaque paramètre influencera les actions possibles
     nom: String,
     charisme: u64,
@@ -29,10 +32,34 @@ use yaml_rust::YamlEmitter;
 use yaml_rust::YamlLoader;
 //use rand::Rng;
 
-mod deser;
+//mod deser;
 
 use std::env;
 use std::fs;
+
+use serde::{Serialize, Deserialize};
+
+
+
+
+
+#[derive(Deserialize, PartialEq, Debug)]
+struct Current {
+     description: String,
+     choix_1:String,
+      N_1:i32,
+     choix_2: String,
+      N_2:i32,
+     choix_3: String,
+      N_3:i32,
+
+    missing: Option<f64>,
+}
+
+
+
+
+
 
 fn main() -> Result<(), io::Error> {
 
@@ -58,6 +85,7 @@ let mut out_str = String::new();
 let mut emitter = YamlEmitter::new(&mut out_str);
 emitter.dump(doc).unwrap(); // dump the YAML object to a String
 
+let myhson:Current = from_str(&out_str).unwrap();
 
     let perso = Perso{ // la structure de héro elle est pour l'instant static
         nom: "Pachat".to_string(),
