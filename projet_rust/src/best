@@ -1,0 +1,16 @@
+        1:  
+            {
+            description: "Ceci correspond à l'histoire",
+            choix_1: "Ceci correspond au choix 1",
+            n_1: "1",
+            choix_2: "Ceci correspond au choix 2",
+            n_2: "2",
+            choix_3: "Ceci correspond au choix 3",
+            n_3: "3",
+            }
+            
+
+        2:
+            - va bruler la maison
+        3:
+            - va lire la doc 

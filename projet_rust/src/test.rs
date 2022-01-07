@@ -1,6 +1,6 @@
-use rand::Rng;
-fn main() {
-    let mut rng = rand::thread_rng();
-    println!("Integer: {}", rng.gen_range(0..10));
-    println!("Float: {}", rng.gen_range(0.0..10.0));
-}
+---
+nom: Grcce
+charisme: 100
+force: 2
+intellignece: 40
+current_his: 3
