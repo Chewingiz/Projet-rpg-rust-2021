@@ -29,20 +29,19 @@ struct Current {
      choix_3: String,
       N_3:i32,
 
-    missing: Option<f64>,
 }
 
-
+/*
 pub fn deser(txt:&str)-> Current {// doc hjson
     let hjson = txt ;
     let myhson = from_str(hjson).unwrap();
     return myhson;
 }
+*/
 
 
 
 
-/*
 fn main() {
     // This Hjson document comes from https://hjson.github.io/
     //r# txt #
@@ -127,4 +126,4 @@ emitter.dump(doc).unwrap();
     else
     assert_eq!(expected, myhson);
     println!("{:?}", myhson);
-}*/
+}
