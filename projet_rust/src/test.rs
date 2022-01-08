@@ -1,6 +1,6 @@
 ---
-nom: Grcce
-charisme: 100
-force: 2
-intellignece: 40
-current_his: 3
+nom: Pachat
+charisme: 75
+force: 75
+intellignece: 75
+current_his: 1

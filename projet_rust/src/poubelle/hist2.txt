@@ -1,0 +1,40 @@
+    1:
+       {
+  // use #, // or /**/ comments,
+  // omit quotes for keys
+  // and use multiline strings
+
+     description:
+    '''
+   	Ceci correspond à l'histoire.
+    '''
+
+
+     choix_1:
+    '''
+   	Ceci correspond au choix 1.
+    '''
+      N_1:1
+
+
+
+     choix_2:
+    '''
+   	Ceci correspond au choix 2.
+    '''
+      N_2:2
+
+
+
+     choix_3:
+     '''
+   	Ceci correspond au choix 3.
+     '''
+      N_3:3
+
+
+}
+    2:
+        - va bruler la maison
+    3:
+        - va lire la doc
