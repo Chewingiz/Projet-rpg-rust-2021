@@ -1,14 +1,35 @@
 1:
-  name: John Doe
-  age: 43
-  phones:
-  - "+44 1234567"
-  - "+44 2345678"
-
-
-
+  description: Ceci correspond à l'histoire 1.
+  choix_1: Ceci correspond au choix 1.
+  n_1: 2
+  choix_2: Ceci correspond au choix 2.
+  n_2: 3
+  choix_3: Ceci correspond au choix 3.
+  n_3: 4
 
 2:
-  - va bruler la maison
+  description: Ceci correspond à l'histoire 2.
+  choix_1: Ceci correspond au choix 1.
+  n_1: 2
+  choix_2: Ceci correspond au choix 2.
+  n_2: 3
+  choix_3: Ceci correspond au choix 3.
+  n_3: 4
+
 3:
-  - va lire la doc
+  description: Ceci correspond à l'histoire 3.
+  choix_1: Ceci correspond au choix 1.
+  n_1: 2
+  choix_2: Ceci correspond au choix 2.
+  n_2: 3
+  choix_3: Ceci correspond au choix 3.
+  n_3: 4
+
+4:
+  description: Ceci correspond à l'histoire 4.
+  choix_1: Ceci correspond au choix 1.
+  n_1: 2
+  choix_2: Ceci correspond au choix 2.
+  n_2: 3
+  choix_3: Ceci correspond au choix 3.
+  n_3: 4

@@ -23,12 +23,12 @@ use std::collections::HashMap;
 
 #[derive(Deserialize, PartialEq, Debug)]
 struct Current{
-    description: i32,
-    choix_1: i32,
+    description: String,
+    choix_1: String,
     n_1: i32,
-    choix_2: i32,
+    choix_2: String,
     n_2: i32,
-    choix_3: i32,
+    choix_3: String,
     n_3: i32,
 }
 use serde_json::from_str;
@@ -43,54 +43,21 @@ struct Person {
     age:  u16,
     phones: Vec<String>,
 }
-
-fn typed_example(data : &str) -> serde_yaml::Result<Person> {
+//grace à la lib from https://crates.io/crates/serde_yaml
+//et https://stackoverflow.com/questions/68404178/how-to-deserialize-this-yaml-in-struct-with-serde-yaml
+fn typed_example(data : &str) -> serde_yaml::Result<Current> {
     // Some JSON input data as a &str. Maybe this comes from the user.
-
-
     // Parse the string of data into a Person object. This is exactly the
     // same function as the one that produced serde_json::Value above, but
     // now we are asking it for a Person as output.
     //let p: Person = serde_json::from_str(data)?;
-let p: Person =serde_yaml::from_str(data)?;
+let c: Current =serde_yaml::from_str(data)?;
     // Do things just like with any other Rust data structure.
-    println!("Please call {} at the number {}", p.name, p.phones[0]);
+    //println!("Please call {} at the number {}", p.name, p.phones[0]);
 
-    Ok(p)
+    Ok(c)
 }
-
-fn main() -> io::Result<()>  {
-    let histoire = fs::read_to_string("hist2").expect("Something went wrong reading the file");
-
-    let docs = YamlLoader::load_from_str(&histoire).unwrap();
-    let doc = &docs[0][1];
-    let mut out_str = String::new();
-    let mut emitter = YamlEmitter::new(&mut out_str);
-    emitter.dump(doc).unwrap(); // dump the YAML object to a String
-    let data: &str = &out_str;
-    /*let data = r#"
-        {
-            "name": "John Doe",
-            "age": 43,
-            "phones": [
-                "+44 1234567",
-                "+44 2345678"
-            ]
-        }"#;
-*/
-        let myhson=typed_example(data);
-    //let myhson: serde_json::Result<Person> = serde_json::from_str(stack_str).unwrap().expect("Something went wrong reading the file");
-    println!("{:?}", myhson);
-
-//: Result<Person , serde_json::Error> // : serde_json::Result<Person>
-/*
-    let perso = Perso {
-        // la structure de héro elle est pour l'instant static
-        nom: "Pachat".to_string(),
-        charisme: 1,
-        force: 2,
-        intellignece: 4,
-    };
+fn affichage(perso:Perso, out_str:String, current:Current) -> io::Result<()>  {
     let mut stdout = io::stdout().into_raw_mode()?;
     write!(stdout, "{}", clear::All)?;
     let backend = TermionBackend::new(stdout);
@@ -137,6 +104,8 @@ fn main() -> io::Result<()>  {
             + "Intelligence: "
             + &perso.intellignece.to_string()
             + "\n";
+
+
         let stat = [Text::raw(help), Text::styled("", Style::default())];
         let upper_left_pane = Paragraph::new(option.iter())
             .block(Block::default().title("Option").borders(Borders::ALL));
@@ -146,11 +115,28 @@ fn main() -> io::Result<()>  {
            Block::default().title("Histroire").borders(Borders::ALL);
         */
 
-        let text = [
+        /*let text = [
             // le texte qui sera vue dans l'interface du terminal
             Text::styled(out_str, Style::default()),
-        ];
-        let right_pane = Paragraph::new(text.iter())
+        ];*/
+
+        let page = //"Pseudo: ".to_owned()
+        "   ".to_owned()
+        + &current.description
+        + "\n"
+        + "\n"
+        + "[1]: "
+        + &current.choix_1
+        + "\n"
+        + "[2]: "
+        + &current.choix_2
+        + "\n"
+        + "[3]: "
+        + &current.choix_3
+        + "\n";
+        let text = [Text::raw(page), Text::styled("", Style::default())];
+        //let right_pane =
+        let right_pane =Paragraph::new(text.iter())
             .block(Block::default().title("Histroire").borders(Borders::ALL))
             .scroll(0) // on donne un titer a la case et on instancie le scroll(a modifier)
             .wrap(true);
@@ -159,6 +145,63 @@ fn main() -> io::Result<()>  {
         f.render_widget(lower_left_pane, left_chunks[1]);
         f.render_widget(right_pane, chunks[1]);
     })?;
-    print!("\r\n");*/
+    print!("\r\n");
     Ok(())
 }
+
+
+fn main() -> io::Result<()>  {
+    let histoire = fs::read_to_string("hist2").expect("Something went wrong reading the file");
+
+    let docs = YamlLoader::load_from_str(&histoire).unwrap();
+    let doc = &docs[0][1];
+    let mut out_str = String::new();
+    let mut emitter = YamlEmitter::new(&mut out_str);
+    emitter.dump(doc).unwrap(); // dump the YAML object to a String
+
+    let data: &str = &out_str;
+    //let myhson=typed_example(data);
+    let current:Current=typed_example(data).unwrap();
+    //let myhson: serde_json::Result<Person> = serde_json::from_str(stack_str).unwrap().expect("Something went wrong reading the file");
+    //println!("{:?}", myhson);
+
+//: Result<Person , serde_json::Error> // : serde_json::Result<Person>
+
+    let perso = Perso {
+        // la structure de héro elle est pour l'instant static
+        nom: "Pachat".to_string(),
+        charisme: 1,
+        force: 2,
+        intellignece: 4,
+    };
+    affichage(perso, out_str,current);
+    Ok(())
+}
+
+
+
+
+/*
+// traducteur pour verifier: https://www.json2yaml.com/
+Json te  YAML
+{
+     "description": "Ceci correspond à l'histoire.",
+     "choix_1": "Ceci correspond au choix 1.",
+     " N_1":1,
+     "choix_2": "Ceci correspond au choix 2.",
+     "N_2":2,
+     "choix_3": "Ceci correspond au choix 3.",
+     " N_3":3
+}
+
+Yaml
+description: Ceci correspond à l'histoire.
+choix_1: Ceci correspond au choix 1.
+" N_1": 1
+choix_2: Ceci correspond au choix 2.
+N_2: 2
+choix_3: Ceci correspond au choix 3.
+" N_3": 3
+
+
+*/
