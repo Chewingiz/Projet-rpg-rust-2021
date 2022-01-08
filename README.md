@@ -85,7 +85,11 @@ Nous avons utilisé une sérialisation/désérialisation Yaml. Ainsi, si nous vo
   mort: false
 ```
 description : vous aurez juste à mettre vos textes.
+
 type1 : vous devez décrire sur quel type l'action ou le dé va être utilisé sur quelle stats pour le choix.
+
 n_X_reussit : si l'action réussie, vers ou le joueur sera redirigé.
+
 n_X_echec : si l'action rate, vers ou le joueur sera redirigé.
+
 mort : un booléen qui dit précise si le scénario est un scénario de fin.
