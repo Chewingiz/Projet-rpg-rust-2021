@@ -14,3 +14,8 @@ serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
 serde = { version = "1.0.103", features = ["derive"] }
 serde_derive = "1.0.103"
 serde_yaml = "0.8"
+
+[dependencies.crossterm]
+version = "0.17"
+features = ["event-stream"] 
+
