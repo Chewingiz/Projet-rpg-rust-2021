@@ -23,6 +23,12 @@ Le jeu que nous voulons réaliser s'inspire d’un type de livres nommé Livre o
 - On a remplacé l'arbre par un vecteur.
 - Faire une fonction de sauvegarde et de chargement de sauvegarde, pour revenir à sa progression.
 
+# Difficulter
+- Comprendre la librairie de serd/Yaml.
+- Beaucoup de problèmes à faire la désérialisation.
+- À faire le terminal avec tui.
+- Le bug principal, est que si on réduit trop la page du terminal et qui ne reste plus assez de place pour le label de la jauge, le programme s'arrête. Le problème est connu comme étant un problème de la jauge. Elle est censée être réparé dans la version "0.16" de tui '#494', mais le changement d'une version à une autre est ce compliqué ce qui génère beaucoup d'erreur.
+
 # Voici les Instructions pour lancer le jeu
 
 cloner le dépot sur votre machine : 
