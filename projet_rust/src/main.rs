@@ -148,6 +148,18 @@ fn main() -> Result<(), io::Error> {
                 let mut file = File::create("test.rs")?;
                 file.write_all(serialized_state.as_bytes())?;
             }
+            if let KeyCode::Char('1') = key.code {
+                // le cas on on appuye sur '1', permet de choisir le choix numéro 1.
+                perso.current_his = 1;
+            }
+            if let KeyCode::Char('2') = key.code {
+                // le cas on on appuye sur '2', permet de choisir le choix numéro 2.
+                perso.current_his = 2;
+            }
+            if let KeyCode::Char('3') = key.code {
+                // le cas on on appuye sur '3', permet de choisir le choix numéro 3.
+                perso.current_his = 3;
+            }
             if let KeyCode::Char('c') = key.code {
                 // le cas on on appuye sur 'c', permet de charger votre ancienne sauvegarder
                 let sauvegarde = fs::read_to_string("test.rs").expect("Something went wrong reading the file");
