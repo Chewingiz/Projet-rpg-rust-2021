@@ -1,3 +1,20 @@
+0:
+  description: |
+    Vous avez perdu :(.
+  choix_1:
+  type1:
+  n_1_reussit: 2
+  n_1_echec: 2
+  choix_2:
+  type2:
+  n_2_reussit: 2
+  n_2_echec: 2
+  type3:
+  choix_3:
+  n_3_reussit: 0
+  n_3_echec: 0
+  mort: true
+
 1:
   description: Ceci correspond à l'histoire 1.
   choix_1: Ceci correspond au choix 1.
@@ -12,6 +29,7 @@
   choix_3: Ceci correspond au choix 3.
   n_3_reussit: 6
   n_3_echec: 7
+  mort: false
 
 2:
   description: reussit Ceci correspond à l'histoire 2.
@@ -27,6 +45,7 @@
   choix_3: Ceci correspond au choix 3.
   n_3_reussit: 6
   n_3_echec: 7
+  mort: false
 
 3:
   description: echec Ceci correspond à l'histoire 3.
@@ -42,6 +61,7 @@
   choix_3: Ceci correspond au choix 3.
   n_3_reussit: 6
   n_3_echec: 7
+  mort: false
 
 4:
   description: reussit Ceci correspond à l'histoire 4.
@@ -57,6 +77,7 @@
   choix_3: Ceci correspond au choix 3.
   n_3_reussit: 6
   n_3_echec: 7
+  mort: false
 
 5:
   description: echec Ceci correspond à l'histoire 5.
@@ -72,6 +93,7 @@
   choix_3: Ceci correspond au choix 3.
   n_3_reussit: 6
   n_3_echec: 7
+  mort: false
 
 6:
   description: reussit Ceci correspond à l'histoire 6.
@@ -87,6 +109,7 @@
   choix_3: Ceci correspond au choix 3.
   n_3_reussit: 6
   n_3_echec: 7
+  mort: false
 
 
 7:
@@ -103,3 +126,4 @@
   choix_3: Ceci correspond au choix 3.
   n_3_reussit: 6
   n_3_echec: 7
+  mort: false
