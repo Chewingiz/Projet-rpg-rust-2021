@@ -1,8 +1,8 @@
 # Projet RPG textuel
-| Nom             | Prénom | numéro étudiant | Lien git                                         |
-|---              |---     |---              |---                                               |
-| Elsegahy        | Rayan  |20008434         |https://code.up8.edu/Smanal/projet-rust-rpg-2021  |
-| Saidi           | Manal  |20007381         |                                                  |
+| Nom             | Prénom | numéro étudiant | Classe| Lien git                                         |
+|---              |---     |---              |---    |---                                               |
+| Elsegahy        | Rayan  | 20008434        | L2b   |https://code.up8.edu/Smanal/projet-rust-rpg-2021  |
+| Saidi           | Manal  | 20007381        | L2b   |                                                  |
 
 
 # Introduction
