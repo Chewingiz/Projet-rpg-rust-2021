@@ -12,7 +12,7 @@ use tui::{
 use crossterm::event::{self, Event, KeyCode};
 
 use std::fs::File;
-
+use rand::Rng;
 #[derive(Serialize, Deserialize,Debug)]
 struct Perso {
     // la structure de votre héro chaque paramètre influencera les actions possibles
@@ -35,15 +35,18 @@ struct Current{
 
     choix_1: String,
     type1:String,
-    n_1: usize,
+    n_1_reussit: usize,
+    n_1_echec: usize,
 
     choix_2: String,
     type2:String,
-    n_2: usize,
+    n_2_reussit: usize,
+    n_2_echec: usize,
 
     choix_3: String,
     type3:String,
-    n_3: usize,
+    n_3_reussit: usize,
+    n_3_echec: usize,
 }
 use serde_json::from_str;
 use std::fs;
@@ -66,123 +69,22 @@ let c: Current =serde_yaml::from_str(data)?;
 
     Ok(c)
 }
-/*fn affichage(perso:Perso, current:Current) -> io::Result<()>  {
-    let mut stdout = io::stdout().into_raw_mode()?;
-    write!(stdout, "{}", clear::All)?;
-    let backend = TermionBackend::new(stdout);
-    let mut terminal = Terminal::new(backend)?; // on crée donc ce qui nous sera l'interface ou l'utilisateur pourra interagir dans le terminal
-    terminal.draw(|mut f| {
-        let _test = BarChart::default()
-            .block(Block::default().title("BarChart").borders(Borders::ALL)) // on précise que tous sera entouré par une bordure
-            .bar_width(1) // d'une épaiseur de 1
-            .bar_gap(5) // enfin elle seront toutes une distances des uns des autres de 5 (les diférentes case)
-            .style(Style::default().fg(Color::Yellow).bg(Color::Red))
-            .value_style(Style::default().fg(Color::Red).modifier(Modifier::BOLD))
-            .label_style(Style::default().fg(Color::White)); // la couleur de la bordure sera blanche
-        let chunks = Layout::default() // on crée les différents case de notre interface sur le terminal
-            .direction(Direction::Horizontal)
-            .margin(1)
-            .constraints(
-                //les differrents ecart entre chaque cases qu'on créera
-                [Constraint::Percentage(30), Constraint::Percentage(50)].as_ref(),
-            )
-            .split(f.size());
-        let left_chunks = Layout::default()
-            .direction(Direction::Vertical)
-            .margin(1)
-            .constraints(
-                //les differrents ecart entre chaque cases qu'on créera
-                [Constraint::Percentage(50), Constraint::Percentage(50)].as_ref(),
-            )
-            .split(chunks[0]);
-
-        let option = [
-            // l'affichage des différent static que vous possédés
-            Text::raw("q: pour quitter\ns: pour sauvegarder"),
-            Text::styled("", Style::default()),
-        ];
-        let help = "Pseudo: ".to_owned()
-            + &perso.nom
-            + "\n"
-            + "Charisme: "
-            + &perso.charisme.to_string()
-            + "\n"
-            + "Force: "
-            + &perso.force.to_string()
-            + "\n"
-            + "Intelligence: "
-            + &perso.intellignece.to_string()
-            + "\n";
-
-
-        let stat = [Text::raw(help), Text::styled("", Style::default())];
-        let upper_left_pane = Paragraph::new(option.iter())
-            .block(Block::default().title("Option").borders(Borders::ALL));
-        let lower_left_pane =
-            Paragraph::new(stat.iter()).block(Block::default().title("Stat").borders(Borders::ALL));
-        /* let right_pane =
-           Block::default().title("Histroire").borders(Borders::ALL);
-        */
-
-        /*let text = [
-            // le texte qui sera vue dans l'interface du terminal
-            Text::styled(out_str, Style::default()),
-        ];*/
-
-        let page = //"Pseudo: ".to_owned()
-        "   ".to_owned()
-        + &current.description
-        + "\n"
-        + "\n"
-        + "[1]: "
-        + &current.choix_1
-        + "\n"
-        + "[2]: "
-        + &current.choix_2
-        + "\n"
-        + "[3]: "
-        + &current.choix_3
-        + "\n";
-        let text = [Text::raw(page), Text::styled("", Style::default())];
-        //let right_pane =
-        let right_pane =Paragraph::new(text.iter())
-            .block(Block::default().title("Histroire").borders(Borders::ALL))
-            .scroll(0) // on donne un titer a la case et on instancie le scroll(a modifier)
-            .wrap(true);
-
-        f.render_widget(upper_left_pane, left_chunks[0]); // on rajoute les differentes cases a notre interfaces
-        f.render_widget(lower_left_pane, left_chunks[1]);
-        f.render_widget(right_pane, chunks[1]);
-    })?;
-    print!("\r\n");
-    Ok(())
-}*/
 
 
 fn main() -> io::Result<()>  {
     let histoire = fs::read_to_string("hist2").expect("Something went wrong reading the file");
-
+    let mut rng = rand::thread_rng();
         let mut perso = Perso {
             // la structure de héro elle est pour l'instant static
             nom: "Pachat".to_string(),
-            charisme: 1,
-            force: 2,
-            intellignece: 4,
+            charisme: 75,
+            force: 75,
+            intellignece: 75,
             current_his: 1,
         };
 
     let docs = YamlLoader::load_from_str(&histoire).unwrap();
-    /* let doc = &docs[0][perso.current_his];
-    let mut out_str = String::new();
-    let mut emitter = YamlEmitter::new(&mut out_str);
-    emitter.dump(doc).unwrap(); // dump the YAML object to a String;
-    let current:Current=typed_example(&out_str).unwrap();
-    //let myhson: serde_json::Result<Person> = serde_json::from_str(stack_str).unwrap().expect("Something went wrong reading the file");
-    //println!("{:?}", myhson);
-*/
-//: Result<Person , serde_json::Error> // : serde_json::Result<Person>
 
-    //affichage(perso,current);
     loop {
             // boucle de notre jeux qui s'arrete si on attein un end game ou si on appui sur 'q'
             //https://crates.io/crates/yaml-rust: m'a permit de comprendre comment marche la Yaml
@@ -294,15 +196,27 @@ fn main() -> io::Result<()>  {
                 }
                 if let KeyCode::Char('1') = key.code {
                     // le cas on on appuye sur '1', permet de choisir le choix numéro 1.
-                    perso.current_his = current.n_1;
+                     if rng.gen_range(0..100) <= perso.charisme {
+                         perso.current_his = current.n_1_reussit;
+                     }else{
+                         perso.current_his = current.n_1_echec;
+                     }
                 }
                 if let KeyCode::Char('2') = key.code {
                     // le cas on on appuye sur '2', permet de choisir le choix numéro 2.
-                    perso.current_his = current.n_2;
+                    if rng.gen_range(0..100) <= perso.force {
+                        perso.current_his = current.n_2_reussit;
+                    }else{
+                        perso.current_his = current.n_2_echec;
+                    }
                 }
                 if let KeyCode::Char('3') = key.code {
                     // le cas on on appuye sur '3', permet de choisir le choix numéro 3.
-                    perso.current_his = current.n_3;
+                    if rng.gen_range(0..100) <= perso.intellignece {
+                        perso.current_his = current.n_3_reussit;
+                    }else{
+                        perso.current_his = current.n_3_echec;
+                    }
                 }
                 if let KeyCode::Char('c') = key.code {
                     // le cas on on appuye sur 'c', permet de charger votre ancienne sauvegarder
@@ -327,7 +241,7 @@ fn main() -> io::Result<()>  {
         Ok(())
 
 
-}
+}//perso."intellignece"
 
 
 
@@ -356,3 +270,118 @@ choix_3: Ceci correspond au choix 3.
 
 
 */
+ /* let doc = &docs[0][perso.current_his];
+    let mut out_str = String::new();
+    let mut emitter = YamlEmitter::new(&mut out_str);
+    emitter.dump(doc).unwrap(); // dump the YAML object to a String;
+    let current:Current=typed_example(&out_str).unwrap();
+    //let myhson: serde_json::Result<Person> = serde_json::from_str(stack_str).unwrap().expect("Something went wrong reading the file");
+    //println!("{:?}", myhson);
+*/
+//: Result<Person , serde_json::Error> // : serde_json::Result<Person>
+
+    //affichage(perso,current);
+
+    /* let doc = &docs[0][perso.current_his];
+    let mut out_str = String::new();
+    let mut emitter = YamlEmitter::new(&mut out_str);
+    emitter.dump(doc).unwrap(); // dump the YAML object to a String;
+    let current:Current=typed_example(&out_str).unwrap();
+    //let myhson: serde_json::Result<Person> = serde_json::from_str(stack_str).unwrap().expect("Something went wrong reading the file");
+    //println!("{:?}", myhson);
+*/
+//: Result<Person , serde_json::Error> // : serde_json::Result<Person>
+
+    //affichage(perso,current);
+
+/*fn affichage(perso:Perso, current:Current) -> io::Result<()>  {
+    let mut stdout = io::stdout().into_raw_mode()?;
+    write!(stdout, "{}", clear::All)?;
+    let backend = TermionBackend::new(stdout);
+    let mut terminal = Terminal::new(backend)?; // on crée donc ce qui nous sera l'interface ou l'utilisateur pourra interagir dans le terminal
+    terminal.draw(|mut f| {
+        let _test = BarChart::default()
+            .block(Block::default().title("BarChart").borders(Borders::ALL)) // on précise que tous sera entouré par une bordure
+            .bar_width(1) // d'une épaiseur de 1
+            .bar_gap(5) // enfin elle seront toutes une distances des uns des autres de 5 (les diférentes case)
+            .style(Style::default().fg(Color::Yellow).bg(Color::Red))
+            .value_style(Style::default().fg(Color::Red).modifier(Modifier::BOLD))
+            .label_style(Style::default().fg(Color::White)); // la couleur de la bordure sera blanche
+        let chunks = Layout::default() // on crée les différents case de notre interface sur le terminal
+            .direction(Direction::Horizontal)
+            .margin(1)
+            .constraints(
+                //les differrents ecart entre chaque cases qu'on créera
+                [Constraint::Percentage(30), Constraint::Percentage(50)].as_ref(),
+            )
+            .split(f.size());
+        let left_chunks = Layout::default()
+            .direction(Direction::Vertical)
+            .margin(1)
+            .constraints(
+                //les differrents ecart entre chaque cases qu'on créera
+                [Constraint::Percentage(50), Constraint::Percentage(50)].as_ref(),
+            )
+            .split(chunks[0]);
+
+        let option = [
+            // l'affichage des différent static que vous possédés
+            Text::raw("q: pour quitter\ns: pour sauvegarder"),
+            Text::styled("", Style::default()),
+        ];
+        let help = "Pseudo: ".to_owned()
+            + &perso.nom
+            + "\n"
+            + "Charisme: "
+            + &perso.charisme.to_string()
+            + "\n"
+            + "Force: "
+            + &perso.force.to_string()
+            + "\n"
+            + "Intelligence: "
+            + &perso.intellignece.to_string()
+            + "\n";
+
+
+        let stat = [Text::raw(help), Text::styled("", Style::default())];
+        let upper_left_pane = Paragraph::new(option.iter())
+            .block(Block::default().title("Option").borders(Borders::ALL));
+        let lower_left_pane =
+            Paragraph::new(stat.iter()).block(Block::default().title("Stat").borders(Borders::ALL));
+        /* let right_pane =
+           Block::default().title("Histroire").borders(Borders::ALL);
+        */
+
+        /*let text = [
+            // le texte qui sera vue dans l'interface du terminal
+            Text::styled(out_str, Style::default()),
+        ];*/
+
+        let page = //"Pseudo: ".to_owned()
+        "   ".to_owned()
+        + &current.description
+        + "\n"
+        + "\n"
+        + "[1]: "
+        + &current.choix_1
+        + "\n"
+        + "[2]: "
+        + &current.choix_2
+        + "\n"
+        + "[3]: "
+        + &current.choix_3
+        + "\n";
+        let text = [Text::raw(page), Text::styled("", Style::default())];
+        //let right_pane =
+        let right_pane =Paragraph::new(text.iter())
+            .block(Block::default().title("Histroire").borders(Borders::ALL))
+            .scroll(0) // on donne un titer a la case et on instancie le scroll(a modifier)
+            .wrap(true);
+
+        f.render_widget(upper_left_pane, left_chunks[0]); // on rajoute les differentes cases a notre interfaces
+        f.render_widget(lower_left_pane, left_chunks[1]);
+        f.render_widget(right_pane, chunks[1]);
+    })?;
+    print!("\r\n");
+    Ok(())
+}*/

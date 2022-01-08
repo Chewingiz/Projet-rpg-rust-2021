@@ -2,46 +2,104 @@
   description: Ceci correspond à l'histoire 1.
   choix_1: Ceci correspond au choix 1.
   type1: String
-  n_1: 2
+  n_1_reussit: 2
+  n_1_echec: 3
   choix_2: Ceci correspond au choix 2.
   type2: String
-  n_2: 3
+  n_2_reussit: 4
+  n_2_echec: 5
   type3: String
   choix_3: Ceci correspond au choix 3.
-  n_3: 4
+  n_3_reussit: 6
+  n_3_echec: 7
 
 2:
-  description: Ceci correspond à l'histoire 2.
+  description: reussit Ceci correspond à l'histoire 2.
   choix_1: Ceci correspond au choix 1.
   type1: String
-  n_1: 2
+  n_1_reussit: 2
+  n_1_echec: 3
   choix_2: Ceci correspond au choix 2.
   type2: String
-  n_2: 3
+  n_2_reussit: 4
+  n_2_echec: 5
   type3: String
   choix_3: Ceci correspond au choix 3.
-  n_3: 4
+  n_3_reussit: 6
+  n_3_echec: 7
 
 3:
-  description: Ceci correspond à l'histoire 3.
+  description: echec Ceci correspond à l'histoire 3.
   choix_1: Ceci correspond au choix 1.
   type1: String
-  n_1: 2
+  n_1_reussit: 2
+  n_1_echec: 3
   choix_2: Ceci correspond au choix 2.
   type2: String
-  n_2: 3
+  n_2_reussit: 4
+  n_2_echec: 5
   type3: String
   choix_3: Ceci correspond au choix 3.
-  n_3: 4
+  n_3_reussit: 6
+  n_3_echec: 7
 
 4:
-  description: Ceci correspond à l'histoire 4.
+  description: reussit Ceci correspond à l'histoire 4.
   choix_1: Ceci correspond au choix 1.
   type1: String
-  n_1: 2
+  n_1_reussit: 2
+  n_1_echec: 3
   choix_2: Ceci correspond au choix 2.
   type2: String
-  n_2: 3
+  n_2_reussit: 4
+  n_2_echec: 5
   type3: String
   choix_3: Ceci correspond au choix 3.
-  n_3: 4
+  n_3_reussit: 6
+  n_3_echec: 7
+
+5:
+  description: echec Ceci correspond à l'histoire 5.
+  choix_1: Ceci correspond au choix 1.
+  type1: String
+  n_1_reussit: 2
+  n_1_echec: 3
+  choix_2: Ceci correspond au choix 2.
+  type2: String
+  n_2_reussit: 4
+  n_2_echec: 5
+  type3: String
+  choix_3: Ceci correspond au choix 3.
+  n_3_reussit: 6
+  n_3_echec: 7
+
+6:
+  description: reussit Ceci correspond à l'histoire 6.
+  choix_1: Ceci correspond au choix 1.
+  type1: String
+  n_1_reussit: 2
+  n_1_echec: 3
+  choix_2: Ceci correspond au choix 2.
+  type2: String
+  n_2_reussit: 4
+  n_2_echec: 5
+  type3: String
+  choix_3: Ceci correspond au choix 3.
+  n_3_reussit: 6
+  n_3_echec: 7
+
+
+7:
+  description: echec Ceci correspond à l'histoire 7.
+  choix_1: Ceci correspond au choix 1.
+  type1: String
+  n_1_reussit: 2
+  n_1_echec: 3
+  choix_2: Ceci correspond au choix 2.
+  type2: String
+  n_2_reussit: 4
+  n_2_echec: 5
+  type3: String
+  choix_3: Ceci correspond au choix 3.
+  n_3_reussit: 6
+  n_3_echec: 7
