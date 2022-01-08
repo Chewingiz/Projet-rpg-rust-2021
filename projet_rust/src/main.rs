@@ -1,12 +1,21 @@
 use std::io::{self, Write};
 use termion::{clear, raw::IntoRawMode};
+
+use tui::widgets::Text;
+use tui::Terminal;
 use tui::{
     backend::TermionBackend,
-    layout::{Constraint, Direction, Layout},
+    backend::Backend,
+    layout::{Constraint, Direction, Layout, Rect},
     style::{Color, Modifier, Style},
-    widgets::*,
-    widgets::{BarChart, Block, Borders, Paragraph},
-    *,
+    symbols,
+    //text::{Span, Spans},
+    widgets::canvas::{Canvas, Line, Map, MapResolution, Rectangle},
+    widgets::{
+        Axis, BarChart, Block, Borders, Chart, Dataset, Gauge, List,
+        Paragraph, Row, Sparkline, Table, Tabs,
+    },
+    Frame,
 };
 //manal m'a découvrir cette lib pour les actions d'entré clavier
 use crossterm::event::{self, Event, KeyCode};
@@ -85,6 +94,9 @@ fn main() -> io::Result<()> {
     };
 
     let docs = YamlLoader::load_from_str(&histoire).unwrap();
+    let mut dés:u16=20;
+    let mut taux_réussite:u16=50;
+    let mut color:Color=Color::Red;
 
     loop {
         // boucle de notre jeux qui s'arrete si on attein un end game ou si on appui sur 'q'
@@ -120,7 +132,7 @@ fn main() -> io::Result<()> {
                 .margin(1)
                 .constraints(
                     //les differrents ecart entre chaque cases qu'on créera
-                    [Constraint::Percentage(50), Constraint::Percentage(50)].as_ref(),
+                    [Constraint::Percentage(33), Constraint::Percentage(33), Constraint::Percentage(33)].as_ref(),
                 )
                 .split(chunks[0]);
 
@@ -180,8 +192,23 @@ fn main() -> io::Result<()> {
                 .scroll(0) // on donne un titer a la case et on instancie le scroll(a modifier)
                 .wrap(true);
 
+            //gauge créé à l'aide de la demo de la bibliothèque à l'adresse https://github.com/fdehau/tui-rs/blob/master/examples/demo/ui.rs
+            if dés <= taux_réussite  {
+                color=Color::Green;
+            } else {
+                color=Color::Red;
+            }
+
+            let label = format!("{}% resultat / {}% stat", dés ,taux_réussite);
+            let gauge = Gauge::default()
+                .block(Block::default().title("Resultat dés:").borders(Borders::ALL))
+                .style(Style::default().fg(color).modifier(Modifier::ITALIC))
+                .label(&label)
+                .percent(dés);
+
             f.render_widget(upper_left_pane, left_chunks[0]); // on rajoute les differentes cases a notre interfaces
             f.render_widget(lower_left_pane, left_chunks[1]);
+            f.render_widget(gauge, left_chunks[2]);
             f.render_widget(right_pane, chunks[1]);
         })?;
         // permet de gérer les type de de d'évenement du clavier
@@ -204,7 +231,9 @@ fn main() -> io::Result<()> {
             if current.mort == false {
                 if let KeyCode::Char('1') = key.code {
                     // le cas on on appuye sur '1', permet de choisir le choix numéro 1.
-                    if rng.gen_range(0..100) <= perso.charisme {
+                    dés = rng.gen_range(0..100)as u16;
+                    taux_réussite = perso.charisme as u16;
+                    if dés <= taux_réussite  {
                         perso.current_his = current.n_1_reussit;
                     } else {
                         perso.current_his = current.n_1_echec;
@@ -212,7 +241,9 @@ fn main() -> io::Result<()> {
                 }
                 if let KeyCode::Char('2') = key.code {
                     // le cas on on appuye sur '2', permet de choisir le choix numéro 2.
-                    if rng.gen_range(0..100) <= perso.force {
+                    dés = rng.gen_range(0..100)as u16;
+                    taux_réussite = perso.force as u16;
+                    if dés <= taux_réussite {
                         perso.current_his = current.n_2_reussit;
                     } else {
                         perso.current_his = current.n_2_echec;
@@ -220,7 +251,9 @@ fn main() -> io::Result<()> {
                 }
                 if let KeyCode::Char('3') = key.code {
                     // le cas on on appuye sur '3', permet de choisir le choix numéro 3.
-                    if rng.gen_range(0..100) <= perso.intellignece {
+                    dés = rng.gen_range(0..100)as u16;
+                    taux_réussite =  perso.intellignece as u16;
+                    if dés <= taux_réussite  {
                         perso.current_his = current.n_3_reussit;
                     } else {
                         perso.current_his = current.n_3_echec;
