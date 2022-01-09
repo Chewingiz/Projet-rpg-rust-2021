@@ -99,3 +99,32 @@ n_X_reussit : si l'action réussie, vers ou le joueur sera redirigé.
 n_X_echec : si l'action rate, vers ou le joueur sera redirigé.
 
 mort : un booléen qui dit précise si le scénario est un scénario de fin.
+
+# Bibliothèques 
+Les bibliothèques que nous avons utilisées sont définies comme dependances dans le "cargo.toml" de notre projet.
+```
+[package]
+name = "projet_rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.0"			# Bibliothèque pour créé des valeurs aléatoire
+yaml-rust = "0.4"		# Bibliothèque Yaml
+tui = "0.9"			# Bibliothèque pour la creation d'une interface utilisateur sur le terminal
+termion = "1.5"		# Bibliothèque qui manipule les données bas niveau, comme la lecture ou l'écriture dans le terminal
+				# Nécessaire pour l'utilisation de tui
+serde = { version = "1.0.103", features = ["derive"] } # Bibliothèque  de serialisation/déserialisation
+serde_derive = "1.0.103"	# Bibliothèque pour la deserialisation
+serde_yaml = "0.8"		# Bibliothèque serialisation/déserialisation Yaml
+
+[dependencies.crossterm]	# Permet de capter les évenements durant l'execution 
+version = "0.17"
+features = ["event-stream"] 
+
+```
+# Lien
+
+
