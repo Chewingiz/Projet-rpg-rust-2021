@@ -99,3 +99,51 @@ n_X_reussit : si l'action réussie, vers ou le joueur sera redirigé.
 n_X_echec : si l'action rate, vers ou le joueur sera redirigé.
 
 mort : un booléen qui dit précise si le scénario est un scénario de fin.
+
+# Bibliothèques 
+Les bibliothèques que nous avons utilisées sont définies comme dependances dans le "cargo.toml" de notre projet.
+```
+[package]
+name = "projet_rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand = "0.8.0"			# Bibliothèque pour créé des valeurs aléatoire
+yaml-rust = "0.4"		# Bibliothèque Yaml
+tui = "0.9"			# Bibliothèque pour la creation d'une interface utilisateur sur le terminal
+termion = "1.5"		# Bibliothèque qui manipule les données bas niveau, comme la lecture ou l'écriture dans le terminal
+				# Nécessaire pour l'utilisation de tui
+serde = { version = "1.0.103", features = ["derive"] } # Bibliothèque  de serialisation/déserialisation
+serde_derive = "1.0.103"	# Bibliothèque pour la deserialisation
+serde_yaml = "0.8"		# Bibliothèque serialisation/déserialisation Yaml
+
+[dependencies.crossterm]	# Permet de capter les évenements durant l'execution 
+version = "0.17"
+features = ["event-stream"] 
+
+```
+# Lien
+## Documentations
+  - Doc yaml-rust: https://crates.io/crates/yaml-rust
+  - Doc lecture de fichier et sauvegarder des données:
+https://dev.to/dandyvica/different-ways-of-reading-files-in-rust-2n30#:~:text=Basically%2C%20there%27re%203%20ways%20of%20reading%20ASCII%20files,read%20%28%29%20function%20or%20Ruby%27s%20File.read%20%28%29%20methods 
+  - Doc tui : https://docs.rs/tui/0.9.5/tui/
+  - Doc rust : https://doc.rust-lang.org/book/
+
+## Bibliothèques
+  - Bibliothèque tui : https://github.com/fdehau/tui-rs
+  - Bibliotèque de serde: https://github.com/serde-rs/serde
+  - Bibliotèque de hjson: https://hjson.github.io/
+  - Bibliotèque serde Yaml: https://github.com/dtolnay/serde-yaml
+
+## Aide général
+  - Blog sur tui : https://monkeypatch.io/blog/2021/2021-05-31-rust-tui/
+  - Tuto utilisation bibli rust : https://www.youtube.com/watch?v=PWfTugeKiOE
+  - Reddit tui pour comprendre la bibliothèque : https://www.reddit.com/r/learnrust/comments/gwu0ay/help_with_tuirs/
+  - Traducteur Json -> Yaml: https://www.json2yaml.com/ 
+
+
+
