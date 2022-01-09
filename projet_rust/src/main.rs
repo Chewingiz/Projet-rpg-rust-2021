@@ -11,9 +11,13 @@ use tui::{
     widgets::{BarChart, Block, Borders, Paragraph},
     *,
 };
-
+use serde::{Deserialize, Serialize};
 use rand::Rng;
 use std::fs::File;
+use std::fs;
+use yaml_rust::YamlEmitter;
+use yaml_rust::YamlLoader;
+
 #[derive(Serialize, Deserialize, Debug)]
 struct Perso {
     // la structure de votre héro chaque paramètre influencera les actions possibles
@@ -53,14 +57,11 @@ struct Current {
     n_3_reussit: usize,
     n_3_echec: usize,
 
-    //mort:Some(false)
+    //permet de dire que tes arriver a la fin budy
     mort: bool,
 }
-use serde_json::from_str;
-use serde_yaml::Value;
-use std::fs;
-use yaml_rust::YamlEmitter;
-use yaml_rust::YamlLoader;
+
+//permet de définir le nombre de points que gagnera le personnages à chaque fois qu'il gagnera
 const GAIN: u64 = 10;
 const LIMIT_GAIN: u64 = 90;
 //grace à la lib from https://crates.io/crates/serde_yaml
@@ -92,9 +93,9 @@ fn main() -> io::Result<()> {
     let mut perso = Perso {
         // la structure de héro elle est pour l'instant static
         nom: "Pachat".to_string(),
-        charisme: 50,
-        force: 10,
-        intelligence: 10,
+        charisme: 40,
+        force: 40,
+        intelligence: 40,
         current_his: 1,
     };
     //définition pop_up
@@ -114,7 +115,8 @@ fn main() -> io::Result<()> {
     };
 
     let docs = YamlLoader::load_from_str(&histoire).unwrap();
-    let docs = YamlLoader::load_from_str(&histoire).unwrap();
+
+    //manal à défini dés qui se rénitialise à chaque fois et qui prend la valeur des tirages d'avant pour montrer ce qu'on a fait
     let mut dés: u16 = 0;
     let mut taux_réussite: u16 = 0;
     let mut color: Color = Color::Red;
@@ -207,6 +209,7 @@ fn main() -> io::Result<()> {
 
             let mut page = "   ".to_owned() + &current.description + "\n" + "\n";
 
+            //affichage les choix si la partie n'est pas fini
             if current.mort == false {
                 page = page
                     + "[1]: "
@@ -229,7 +232,7 @@ fn main() -> io::Result<()> {
                     + "\n";
             }
             let text = [Text::raw(page), Text::styled("", Style::default())];
-            //let right_pane =
+
             let right_pane = Paragraph::new(text.iter())
                 .block(Block::default().title("Histroire").borders(Borders::ALL))
                 //.scroll(0) // on donne un titer a la case et on instancie le scroll(a modifier)
