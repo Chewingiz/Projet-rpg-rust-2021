@@ -6,16 +6,16 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rand = "0.8.0"
-yaml-rust = "0.4"
-tui = "0.9"
-termion = "1.5"
-serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
-serde = { version = "1.0.103", features = ["derive"] }
-serde_derive = "1.0.103"
-serde_yaml = "0.8"
+rand = "0.8.0"			# Bibliothèque pour créé des valeurs aléatoire
+yaml-rust = "0.4"		# Bibliothèque Yaml
+tui = "0.9"			# Bibliothèque pour la creation d'une interface utilisateur sur le terminal
+termion = "1.5"		# Bibliothèque qui manipule les données bas niveau, comme la lecture ou l'écriture dans le terminal
+				# Nécessaire pour l'utilisation de tui
+serde = { version = "1.0.103", features = ["derive"] } # Bibliothèque  de serialisation/déserialisation
+serde_derive = "1.0.103"	# Bibliothèque pour la deserialisation
+serde_yaml = "0.8"		# Bibliothèque serialisation/déserialisation Yaml
 
-[dependencies.crossterm]
+[dependencies.crossterm]	# Permet de capter les évenements durant l'execution 
 version = "0.17"
 features = ["event-stream"] 
 
