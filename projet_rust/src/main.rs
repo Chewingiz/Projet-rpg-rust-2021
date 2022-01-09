@@ -27,16 +27,13 @@ struct Perso {
     intelligence: u64,
     current_his: usize, // grace a ce fameux LukeTPeterson, qui m'a aider à regler mon problème indexed
 }
-
+/*
 struct Image {
     // la structure de votre héro chaque paramètre influencera les actions possibles
     image: String,//image en ascii art
-}
+}*/
 use serde::{Deserialize, Serialize};
-use serde_json::json;
-use serde_json::Result;
-//use serde::Deserialize;
-use std::collections::HashMap;
+
 
 #[derive(Deserialize, PartialEq, Debug)]
 struct Current {
@@ -64,26 +61,19 @@ struct Current {
 //permet de définir le nombre de points que gagnera le personnages à chaque fois qu'il gagnera
 const GAIN: u64 = 10;
 const LIMIT_GAIN: u64 = 90;
+
 //grace à la lib from https://crates.io/crates/serde_yaml
 //et https://stackoverflow.com/questions/68404178/how-to-deserialize-this-yaml-in-struct-with-serde-yaml
 //pour Deserialize
 fn typed_example(data: &str) -> serde_yaml::Result<Current> {
-    // Some JSON input data as a &str. Maybe this comes from the user.
-    // Parse the string of data into a Person object. This is exactly the
-    // same function as the one that produced serde_json::Value above, but
-    // now we are asking it for a Person as output.
-    //let p: Person = serde_json::from_str(data)?;
     let c: Current = serde_yaml::from_str(data)?;
-    // Do things just like with any other Rust data structure.
-    //println!("Please call {} at the number {}", p.name, p.phones[0]);
-
     Ok(c)
 }
 
 struct Popup {
     show_popup: bool,
     n_popup: i32,
-    image:String,
+    //image:String,
 }
 
 fn main() -> io::Result<()> {
@@ -98,20 +88,20 @@ fn main() -> io::Result<()> {
         intelligence: 40,
         current_his: 1,
     };
-    //définition pop_up
+
     //ouverture d'image
-    let i = fs::read_to_string("image").expect("Something went wrong reading the file");
+/*    let i = fs::read_to_string("image").expect("Something went wrong reading the file");
     let docs_i = YamlLoader::load_from_str(&i).unwrap();
     let doc_i = &docs_i[0];
     let mut out_i = String::new();
     let mut emitter_i = YamlEmitter::new(&mut out_i);
     emitter_i.dump(doc_i).unwrap(); // dump the YAML object to a String
     let image_i=out_i.to_string();
-
-    let mut popup = Popup {
+*/
+    let mut popup = Popup {//définition pop_up
         show_popup: true,
         n_popup: 0,
-        image:image_i.to_string(),
+    //    image:image_i.to_string(),// pour le test image acii
     };
 
     let docs = YamlLoader::load_from_str(&histoire).unwrap();
@@ -130,6 +120,11 @@ fn main() -> io::Result<()> {
         emitter.dump(doc).unwrap(); // dump the YAML object to a String
         let current: Current = typed_example(&out_str).unwrap();
 
+
+        /*
+            Pour la création de la fenêtre nous nous sommes aider d'un exemple sur reddit.
+            Le commentaire de po8 https://www.reddit.com/r/learnrust/comments/gwu0ay/comment/fsxur7g/?utm_source=share&utm_medium=web2x&context=3
+        */
         let mut stdout = io::stdout().into_raw_mode()?;
         write!(stdout, "{}", clear::All)?;
         let backend = TermionBackend::new(stdout);
@@ -265,8 +260,8 @@ fn main() -> io::Result<()> {
             f.render_widget(right_pane, chunks[1]);
 
             if popup.show_popup {// création du pop up
-                let mut popup_m = "   ".to_owned();
-                let mut popup_title ;
+                let mut popup_m ;
+                let popup_title ;
                 match popup.n_popup {
                     1=> popup_m = "Vous allez enregistrer cette partie et écraser l'ancienne. Confirmer ? ".to_owned()+ "\n"+ "\n"+ "[o] pour oui (écraser)     [n] pour non (ne pas enregistrer) ",// Popup confirmation enregistrement
                     2=> popup_m = "Vous avez enregistré cette partie et écraser l'ancienne !".to_owned(),
@@ -274,7 +269,7 @@ fn main() -> io::Result<()> {
                     4=> popup_m = "Vous avez chargé la dernière partie enregistrée !".to_owned(),
                     5=> popup_m = "Souhaiter vous vraiment quitter l'application ? (N'oubliez pas d'enregistrer!)".to_owned()+ "\n"+ "\n"+ "[o] pour oui (quitter)     [n] pour non ",//Confirmation de sortie de l'application
                     6=> popup_m = "Au revoir!".to_owned(),
-                    7=> popup_m = popup.image.to_owned(),
+                //    7=> popup_m = popup.image.to_owned(),// test pour ajouter une image en acii art
                     _=> popup_m = "Titre".to_owned(),//reste au cas ou on se trompe (pop up)
                 }
 
@@ -304,7 +299,7 @@ fn main() -> io::Result<()> {
                 if popup.n_popup == 1 {
                     if let KeyCode::Char('o') = key.code {
                         //sauvegarder de la partie actuel
-                        let mut serialized_state = serde_yaml::to_string(&perso).unwrap();
+                        let serialized_state = serde_yaml::to_string(&perso).unwrap();
                         let mut file = File::create("test.rs")?;
                         file.write_all(serialized_state.as_bytes())?;
                         popup.n_popup = 2;
@@ -331,7 +326,8 @@ fn main() -> io::Result<()> {
                         perso.intelligence = p.intelligence;
                         perso.force = p.force;
                         perso.current_his = p.current_his;
-
+                        dés = 0;
+                        taux_réussite= 0;
                         popup.n_popup = 4;
                     }
                     if let KeyCode::Char('n') = key.code {
@@ -421,29 +417,8 @@ fn main() -> io::Result<()> {
         print!("\r\n");
     }
     Ok(())
-} //perso."intellignece"
+}
 
 /*
 // traducteur pour verifier: https://www.json2yaml.com/
-Json te  YAML
-{
-     "description": "Ceci correspond à l'histoire.",
-     "choix_1": "Ceci correspond au choix 1.",
-     " N_1":1,
-     "choix_2": "Ceci correspond au choix 2.",
-     "N_2":2,
-     "choix_3": "Ceci correspond au choix 3.",
-     " N_3":3
-}
-
-Yaml
-description: Ceci correspond à l'histoire.
-choix_1: Ceci correspond au choix 1.
-" N_1": 1
-choix_2: Ceci correspond au choix 2.
-N_2: 2
-choix_3: Ceci correspond au choix 3.
-" N_3": 3
-
-
 */
