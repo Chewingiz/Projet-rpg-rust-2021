@@ -127,23 +127,23 @@ features = ["event-stream"]
 ```
 # Lien
 ## Documentations
-  - Doc yaml-rust: 'https://crates.io/crates/yaml-rust'
+  - Doc yaml-rust: https://crates.io/crates/yaml-rust
   - Doc lecture de fichier et sauvegarder des données:
-'https://dev.to/dandyvica/different-ways-of-reading-files-in-rust-2n30#:~:text=Basically%2C%20there%27re%203%20ways%20of%20reading%20ASCII%20files,read%20%28%29%20function%20or%20Ruby%27s%20File.read%20%28%29%20methods '
-  - Doc tui : 'https://docs.rs/tui/0.9.5/tui/'
-  - Doc rust 
+https://dev.to/dandyvica/different-ways-of-reading-files-in-rust-2n30#:~:text=Basically%2C%20there%27re%203%20ways%20of%20reading%20ASCII%20files,read%20%28%29%20function%20or%20Ruby%27s%20File.read%20%28%29%20methods 
+  - Doc tui : https://docs.rs/tui/0.9.5/tui/
+  - Doc rust : https://doc.rust-lang.org/book/
 
 ## Bibliothèques
-  - Bibliothèque tui : 'https://github.com/fdehau/tui-rs'
-  - Bibliotèque de serde: 'https://github.com/serde-rs/serde'
-  - Bibliotèque de hjson: 'https://hjson.github.io/' 
-  - Bibliotèque serde Yaml: 'https://github.com/dtolnay/serde-yaml'
+  - Bibliothèque tui : https://github.com/fdehau/tui-rs
+  - Bibliotèque de serde: https://github.com/serde-rs/serde
+  - Bibliotèque de hjson: https://hjson.github.io/
+  - Bibliotèque serde Yaml: https://github.com/dtolnay/serde-yaml
 
 ## Aide général
-  - Blog sur tui : 'https://monkeypatch.io/blog/2021/2021-05-31-rust-tui/'
-  - Tuto utilisation bibli rust : 'https://www.youtube.com/watch?v=PWfTugeKiOE'
-  - Reddit tui pour comprendre la bibliothèque : 'https://www.reddit.com/r/learnrust/comments/gwu0ay/help_with_tuirs/'
-  - Traducteur Json -> Yaml: 'https://www.json2yaml.com/ '
+  - Blog sur tui : https://monkeypatch.io/blog/2021/2021-05-31-rust-tui/
+  - Tuto utilisation bibli rust : https://www.youtube.com/watch?v=PWfTugeKiOE
+  - Reddit tui pour comprendre la bibliothèque : https://www.reddit.com/r/learnrust/comments/gwu0ay/help_with_tuirs/
+  - Traducteur Json -> Yaml: https://www.json2yaml.com/ 
 
 
 
