@@ -13,8 +13,8 @@ use tui::{
 };
 
 use rand::Rng;
-use std::fs::File;
 use std::fs;
+use std::fs::File;
 use yaml_rust::YamlEmitter;
 use yaml_rust::YamlLoader;
 
@@ -33,7 +33,6 @@ struct Image {
     image: String,//image en ascii art
 }*/
 use serde::{Deserialize, Serialize};
-
 
 #[derive(Deserialize, PartialEq, Debug)]
 struct Current {
@@ -77,7 +76,7 @@ struct Popup {
 }
 
 fn main() -> io::Result<()> {
-    let histoire = fs::read_to_string("hist2").expect("Something went wrong reading the file");
+    let histoire = fs::read_to_string("histoire").expect("Something went wrong reading the file");
 
     let mut rng = rand::thread_rng();
     let mut perso = Perso {
@@ -90,18 +89,19 @@ fn main() -> io::Result<()> {
     };
 
     //ouverture d'image
-/*    let i = fs::read_to_string("image").expect("Something went wrong reading the file");
-    let docs_i = YamlLoader::load_from_str(&i).unwrap();
-    let doc_i = &docs_i[0];
-    let mut out_i = String::new();
-    let mut emitter_i = YamlEmitter::new(&mut out_i);
-    emitter_i.dump(doc_i).unwrap(); // dump the YAML object to a String
-    let image_i=out_i.to_string();
-*/
-    let mut popup = Popup {//définition pop_up
+    /*    let i = fs::read_to_string("image").expect("Something went wrong reading the file");
+        let docs_i = YamlLoader::load_from_str(&i).unwrap();
+        let doc_i = &docs_i[0];
+        let mut out_i = String::new();
+        let mut emitter_i = YamlEmitter::new(&mut out_i);
+        emitter_i.dump(doc_i).unwrap(); // dump the YAML object to a String
+        let image_i=out_i.to_string();
+    */
+    let mut popup = Popup {
+        //définition pop_up
         show_popup: true,
         n_popup: 0,
-    //    image:image_i.to_string(),// pour le test image acii
+        //    image:image_i.to_string(),// pour le test image acii
     };
 
     let docs = YamlLoader::load_from_str(&histoire).unwrap();
@@ -119,7 +119,6 @@ fn main() -> io::Result<()> {
         let mut emitter = YamlEmitter::new(&mut out_str);
         emitter.dump(doc).unwrap(); // dump the YAML object to a String
         let current: Current = typed_example(&out_str).unwrap();
-
 
         /*
             Pour la création de la fenêtre nous nous sommes aider d'un exemple sur reddit.
@@ -300,7 +299,7 @@ fn main() -> io::Result<()> {
                     if let KeyCode::Char('o') = key.code {
                         //sauvegarder de la partie actuel
                         let serialized_state = serde_yaml::to_string(&perso).unwrap();
-                        let mut file = File::create("test.rs")?;
+                        let mut file = File::create("sauvegarde.rs")?;
                         file.write_all(serialized_state.as_bytes())?;
                         popup.n_popup = 2;
                     }
@@ -313,7 +312,7 @@ fn main() -> io::Result<()> {
                 if popup.n_popup == 3 {
                     if let KeyCode::Char('o') = key.code {
                         // le cas de confirmation de chargement.
-                        let sauvegarde = fs::read_to_string("test.rs")
+                        let sauvegarde = fs::read_to_string("sauvegarde.rs")
                             .expect("Something went wrong reading the file");
                         let docs = YamlLoader::load_from_str(&sauvegarde).unwrap();
                         let doc = &docs[0];
@@ -327,7 +326,7 @@ fn main() -> io::Result<()> {
                         perso.force = p.force;
                         perso.current_his = p.current_his;
                         dés = 0;
-                        taux_réussite= 0;
+                        taux_réussite = 0;
                         popup.n_popup = 4;
                     }
                     if let KeyCode::Char('n') = key.code {
@@ -370,13 +369,14 @@ fn main() -> io::Result<()> {
                     popup.show_popup = true;
                 }
 
-                if current.mort == false {// Si le perso n'est pas mort choix
+                if current.mort == false {
+                    // Si le perso n'est pas mort choix
                     if let KeyCode::Char('1') = key.code {
                         // le cas on on appuye sur '1', permet de choisir le choix numéro 1.
                         dés = rng.gen_range(0..100) as u16;
                         taux_réussite = perso.charisme as u16;
                         if dés <= taux_réussite {
-                            if perso.charisme< LIMIT_GAIN{
+                            if perso.charisme < LIMIT_GAIN {
                                 perso.charisme += GAIN;
                             }
                             perso.current_his = current.n_1_reussit;
@@ -389,7 +389,7 @@ fn main() -> io::Result<()> {
                         dés = rng.gen_range(0..100) as u16;
                         taux_réussite = perso.force as u16;
                         if dés <= taux_réussite {
-                            if perso.force < LIMIT_GAIN{
+                            if perso.force < LIMIT_GAIN {
                                 perso.force += GAIN;
                             }
                             perso.current_his = current.n_2_reussit;
@@ -402,7 +402,7 @@ fn main() -> io::Result<()> {
                         dés = rng.gen_range(0..100) as u16;
                         taux_réussite = perso.intelligence as u16;
                         if dés <= taux_réussite {
-                            if perso.charisme< LIMIT_GAIN{
+                            if perso.charisme < LIMIT_GAIN {
                                 perso.intelligence += GAIN;
                             }
                             perso.current_his = current.n_3_reussit;
