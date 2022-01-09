@@ -11,7 +11,7 @@ use tui::{
     widgets::{BarChart, Block, Borders, Paragraph},
     *,
 };
-use serde::{Deserialize, Serialize};
+
 use rand::Rng;
 use std::fs::File;
 use std::fs;
@@ -274,7 +274,7 @@ fn main() -> io::Result<()> {
                     4=> popup_m = "Vous avez chargé la dernière partie enregistrée !".to_owned(),
                     5=> popup_m = "Souhaiter vous vraiment quitter l'application ? (N'oubliez pas d'enregistrer!)".to_owned()+ "\n"+ "\n"+ "[o] pour oui (quitter)     [n] pour non ",//Confirmation de sortie de l'application
                     6=> popup_m = "Au revoir!".to_owned(),
-                    7=> popup_m = popup.image.,
+                    7=> popup_m = popup.image.to_owned(),
                     _=> popup_m = "Titre".to_owned(),//reste au cas ou on se trompe (pop up)
                 }
 
