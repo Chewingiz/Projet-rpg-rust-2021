@@ -1,6 +1,6 @@
 ---
 nom: Pachat
-charisme: 105
-force: 75
-intelligence: 75
-current_his: 4
+charisme: 40
+force: 60
+intelligence: 40
+current_his: 13

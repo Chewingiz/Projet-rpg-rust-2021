@@ -193,7 +193,7 @@
 
 12: 
   description: | 
-    Vous avez ratés votre coup de dés, l'hamstère vous aide à soulever l'arbre, merci à ce petit être. 
+    Vous avez réussi votre coup de dés, l'hamstère vous aide à soulever l'arbre, merci à ce petit être. 
     Vous reprenez votre route vers le chateau, votre objectif épouser la princesse pour avoir une vie tranquille avec l'argent de la princesse. 
     En ville, une compétition se lança et de comme par hasard la princesse y assiste. Vous voulez l'impréssionner dans ce concours de gladiateur dans ce combat a mort, c'est à votre tour que faite vous ?
   choix_1: Vous montré dans ce stade remplie de personnes vos muscles chatoyant pour impréssionner la princesse.
@@ -212,7 +212,7 @@
 
 13:
   description: |
-    Vous avez ratés votre coup de dés, l'hamstère vous aide à soulever l'arbre apès l'avoir battu, il vous envoie un mesage pour devenir son gymbro, merci à ce petit être. 
+    Vous avez réussi votre coup de dés, l'hamstère vous aide à soulever l'arbre apès l'avoir battu, il vous envoie un mesage pour devenir son gymbro, merci à ce petit être. 
     Vous reprenez votre route vers le chateau, votre objectif épouser la princesse pour avoir une vie tranquille avec l'argent de la princesse. 
     En ville, une compétition se lança et de comme par hasard la princesse y assiste. Vous voulez l'impréssionner dans ce concours de gladiateur dans ce combat a mort, c'est à votre tour que faite vous ?
   choix_1: Vous montré dans ce stade remplie de personnes vos muscles chatoyant pour impréssionner la princesse.
@@ -231,7 +231,7 @@
 
 14:
   description: |
-    Vous avez ratés votre coup de dés, l'hamstère développe un stand, il peut dorénavant remonter dans le temps et faire revenir l'arbre à son état d'origine, merci à ce petit être. 
+    Vous avez réussi votre coup de dés, l'hamstère développe un stand, il peut dorénavant remonter dans le temps et faire revenir l'arbre à son état d'origine, merci à ce petit être. 
     Vous reprenez votre route vers le chateau, votre objectif épouser la princesse pour avoir une vie tranquille avec l'argent de la princesse. 
     En ville, une compétition se lança et de comme par hasard la princesse y assiste. Vous voulez l'impréssionner dans ce concours de gladiateur dans ce combat a mort, c'est à votre tour que faite vous ?
   choix_1: Vous montré dans ce stade remplie de personnes vos muscles chatoyant pour impréssionner la princesse.
