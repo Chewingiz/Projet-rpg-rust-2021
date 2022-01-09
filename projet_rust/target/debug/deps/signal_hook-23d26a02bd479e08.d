@@ -1,0 +1,11 @@
+/home/manal/l2/S3/prog_avance/AAAProjet_final_rpg_rust/projet-rust-rpg-2021/projet_rust/target/debug/deps/signal_hook-23d26a02bd479e08.rmeta: /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/lib.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/cleanup.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/flag.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/iterator.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/pipe.rs
+
+/home/manal/l2/S3/prog_avance/AAAProjet_final_rpg_rust/projet-rust-rpg-2021/projet_rust/target/debug/deps/libsignal_hook-23d26a02bd479e08.rlib: /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/lib.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/cleanup.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/flag.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/iterator.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/pipe.rs
+
+/home/manal/l2/S3/prog_avance/AAAProjet_final_rpg_rust/projet-rust-rpg-2021/projet_rust/target/debug/deps/signal_hook-23d26a02bd479e08.d: /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/lib.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/cleanup.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/flag.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/iterator.rs /home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/pipe.rs
+
+/home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/lib.rs:
+/home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/cleanup.rs:
+/home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/flag.rs:
+/home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/iterator.rs:
+/home/manal/.cargo/registry/src/github.com-1ecc6299db9ec823/signal-hook-0.1.17/src/pipe.rs:
