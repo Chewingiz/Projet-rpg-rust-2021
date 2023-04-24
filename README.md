@@ -12,15 +12,13 @@ Le jeu que nous souhaitons réaliser s'inspire d'un type de livres appelé "Livr
 # Objectifs 
 - Créer un arbre représentant toutes les possibilités de l'histoire, afin de l'implémenter dans notre jeu. Il est important de le faire de manière simple pour permettre aux utilisateurs d'ajouter leurs propres histoires.
 
--Nous allons implémenter un système de lancer de dés qui sera impacté par les statistiques du joueur, permettant ainsi l'avancement de ce dernier. Comme dans un RPG papier, plus la valeur du dé est grande, moins le lancé est réussi. Les statistiques du personnage déterminent la valeur maximale à partir de laquelle une action est réussie.
+- Nous allons implémenter un système de lancer de dés qui sera impacté par les statistiques du joueur, permettant ainsi l'avancement de ce dernier. Comme dans un RPG papier, plus la valeur du dé est grande, moins le lancé est réussi. Les statistiques du personnage déterminent la valeur maximale à partir de laquelle une action est réussie.
 
-Voici quelques exemples pour clarifier le fonctionnement du système :
+	Voici quelques exemples pour clarifier le fonctionnement du système :
+	Si votre stat de force correspond à 40 et que vous faites un 99 au lancer de dé, l'action sera ratée.
+	En revanche, si vous faites un 10 au lancer de dé, l'action sera réussie.
 
-Si votre stat de force correspond à 40 et que vous faites un 99 au lancer de dé, l'action sera ratée.
-
-En revanche, si vous faites un 10 au lancer de dé, l'action sera réussie.
-
-En d'autres termes, la difficulté d'une action sera déterminée par la valeur maximale que peut atteindre le dé, qui sera elle-même influencée par les statistiques du personnage. Ce système permettra de rendre les actions plus aléatoires et de donner une dimension de chance et de stratégie aux combats et aux interactions avec l'environnement.
+	En d'autres termes, la difficulté d'une action sera déterminée par la valeur maximale que peut atteindre le dé, qui sera elle-même influencée par les statistiques du personnage. Ce système permettra de rendre les actions plus aléatoires et de donner une dimension de chance et de stratégie aux combats et aux interactions avec l'environnement.
 
 - Le joueur pourra également augmenter ses statistiques grâce aux objets qu'il pourra récolter durant son aventure. Ces objets pourront augmenter temporairement ou définitivement les statistiques du joueur, lui permettant ainsi de progresser plus facilement dans le jeu. Implémenter un système de sauvegarde pour que le joueur puisse revenir plus tard dans sa partie.
 - Nous allons implémenter les statistiques dans notre jeu, à savoir la Force, le Charisme et l'Intelligence. Ces trois statistiques permettront de déterminer les compétences et les capacités de notre personnage, ainsi que son niveau de réussite dans les différentes actions qu'il entreprendra. La Force permettra d'améliorer la puissance physique du personnage, le Charisme influencera sa capacité à communiquer et à persuader, tandis que l'Intelligence permettra de résoudre des énigmes et des problèmes complexes. L'ajout de ces statistiques permettra une personnalisation plus poussée du personnage, ainsi qu'une plus grande diversité dans les actions et les choix que pourra effectuer le joueur.
