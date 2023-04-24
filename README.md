@@ -6,42 +6,52 @@
 
 
 # Introduction
-Le jeu que nous voulons réaliser s'inspire d’un type de livres nommé Livre où vous êtes le héros. Il s’agira d’un RPG où vous serez transporté dans un monde fantaisie textuelle. Vos choix impacteront vos stat et la suite de votre aventure. Certains choix seront plus durs à réaliser que d’autre due a vos choix précédents, le tout saupoudré de lancer de dé permettant de voir aussi si vous pouvez réussir certaines actions.
+Le jeu que nous souhaitons réaliser s'inspire d'un type de livres appelé "Livre dont vous êtes le héros". Il s'agira d'un RPG textuel situé dans un monde de fantasy. Vos choix auront un impact sur vos statistiques et sur le cours de votre aventure. Certains choix seront plus difficiles à faire en raison de vos choix antérieurs, le tout agrémenté de lancers de dés pour ajouter une dimension aléatoire à certaines actions.
 
 
 # Objectifs 
-- Pouvoir réussir à créer un arbre représentant toutes les possibilités de l’histoire, implémenter ça dans notre jeu. (bien implémenter ou prendre en comprenant bien et pouvoir expliquer des fonctionnements)
-- Implémenter un système de lancé de dé qui sera impacté par les stats du joueur permettant l'avancement de ce dernier.
-- Il pourra aussi par ces actions augmenter ces stats par le biais d’item récolter durant son aventure. Implémenter un système de sauvegarde pour que le joueur puisse revenir plus tard dans sa partie.
-- Bien réussir à bien implémenter les stats dans notre jeu (Force, Charisme, Intelligence).
-- Faire une histoire simple, mais à la fois originale tout en respectant la deadline (ne pas partir pour créer le scénario du seigneur des anneaux) avec plusieurs fins possibles.
+- Créer un arbre représentant toutes les possibilités de l'histoire, afin de l'implémenter dans notre jeu. Il est important de le faire de manière simple pour permettre aux utilisateurs d'ajouter leurs propres histoires.
 
-# Objectif réussi
-- Le joueur peut revenir plus tard dans sa partie.
-- Bien réussir à bien implémenter les stats dans notre jeu (Force, Charisme, Intelligence).
-- Faire une histoire simple, mais à la fois originale tout en respectant la deadline (ne pas partir pour créer le scénario du seigneur des anneaux) avec plusieurs fins possibles.
-- On a remplacé l'arbre par un vecteur.
-- Faire une fonction de sauvegarde et de chargement de sauvegarde, pour revenir à sa progression.
+-Nous allons implémenter un système de lancer de dés qui sera impacté par les statistiques du joueur, permettant ainsi l'avancement de ce dernier. Comme dans un RPG papier, plus la valeur du dé est grande, moins le lancé est réussi. Les statistiques du personnage déterminent la valeur maximale à partir de laquelle une action est réussie.
 
-# Difficulter
-- Comprendre la librairie de serd/Yaml.
-- Beaucoup de problèmes à faire la désérialisation.
-- À faire le terminal avec tui.
-- Le bug principal, est que si on réduit trop la page du terminal et qui ne reste plus assez de place pour le label de la jauge, le programme s'arrête. Le problème est connu comme étant un problème de la jauge. Elle est censée être réparé dans la version "0.16" de tui '#494', mais le changement d'une version à une autre est ce compliqué ce qui génère beaucoup d'erreur.
+Voici quelques exemples pour clarifier le fonctionnement du système :
+
+Si votre stat de force correspond à 40 et que vous faites un 99 au lancer de dé, l'action sera ratée.
+
+En revanche, si vous faites un 10 au lancer de dé, l'action sera réussie.
+
+En d'autres termes, la difficulté d'une action sera déterminée par la valeur maximale que peut atteindre le dé, qui sera elle-même influencée par les statistiques du personnage. Ce système permettra de rendre les actions plus aléatoires et de donner une dimension de chance et de stratégie aux combats et aux interactions avec l'environnement.
+
+- Le joueur pourra également augmenter ses statistiques grâce aux objets qu'il pourra récolter durant son aventure. Ces objets pourront augmenter temporairement ou définitivement les statistiques du joueur, lui permettant ainsi de progresser plus facilement dans le jeu. Implémenter un système de sauvegarde pour que le joueur puisse revenir plus tard dans sa partie.
+- Nous allons implémenter les statistiques dans notre jeu, à savoir la Force, le Charisme et l'Intelligence. Ces trois statistiques permettront de déterminer les compétences et les capacités de notre personnage, ainsi que son niveau de réussite dans les différentes actions qu'il entreprendra. La Force permettra d'améliorer la puissance physique du personnage, le Charisme influencera sa capacité à communiquer et à persuader, tandis que l'Intelligence permettra de résoudre des énigmes et des problèmes complexes. L'ajout de ces statistiques permettra une personnalisation plus poussée du personnage, ainsi qu'une plus grande diversité dans les actions et les choix que pourra effectuer le joueur.
+- Nous allons implémenter un système de sauvegarde pour permettre au joueur de sauvegarder sa progression dans le jeu et de reprendre là où il s'était arrêté lorsqu'il le souhaitera.
+- Nous allons créer une histoire simple mais originale, tout en respectant la deadline. Nous prévoyons d'implémenter plusieurs fins possibles pour permettre une plus grande diversité dans les choix et les actions du joueur. L'histoire sera élaborée de manière à ce qu'elle soit immersive et captivante, tout en restant accessible à tous les types de joueurs. Nous veillerons également à ce que l'histoire soit en cohérence avec les différentes mécaniques du jeu, telles que les statistiques du personnage et les lancers de dés, pour une expérience de jeu fluide et satisfaisante.
+
+# Objectifs réussis
+ -  Implémentation des statistiques.
+ -  Écriture du scénario.
+ -  Les utilisateurs peuvent ajouter leur propre histoire en JSON en respectant la structure que nous avons définie.
+ -  Remplacement de l'arbre par un vecteur.
+ -  Système de sauvegarde fonctionnel.
+ -  Système de lancer de dé fonctionnel.
+ -  Implémentation d'une interface graphique sur le terminal, avec l'utilisation de couleurs et de formes pour une meilleure expérience de jeu.
+
+# Difficultés
+ -  Comprendre la librairie Serd/Yaml pour la manipulation de données structurées en RDF et YAML.
+ -  Rencontré de nombreux problèmes lors de la désérialisation des données.
+ -  Difficulté à implémenter l'interface utilisateur graphique avec TUI (Terminal User Interface).
+ -  Un bug majeur a été identifié : si la taille de la fenêtre du terminal est réduite et que l'espace disponible pour le label de la jauge devient insuffisant, le programme s'arrête. Ce problème est connu sous le numéro de ticket '#494' et est censé être résolu dans la version "0.16" de TUI, mais passer d'une version à une autre peut générer des erreurs supplémentaires.
 
 # Voici les Instructions pour lancer le jeu
+Pour pouvoir exécuter le programme en Rust sur votre ordinateur, il est nécessaire d'installer le gestionnaire de paquets [Cargo](https://doc.rust-lang.org/cargo/) si vous ne l'avez pas déjà. Ce dernier permet d'automatiser la compilation et la gestion des dépendances de notre projet.
 
-cloner le dépot sur votre machine : 
+Clonez le dépot sur votre machine : 
 
-`$ git clone https://code.up8.edu/Smanal/projet-rust-rpg-2021.git`
+`$ git clone https://github.com/Chewingiz/Projet-rpg-rust-2021.git`
 
-entrer dans le fichiers ou ce trouve le jeux :
+Entrer dans le fichiers ou ce trouve le jeux :
 
-`$ cd projet_rust`
-
-puis :
-
-`$ cd src`
+`$ cd projet_rust/src`
 
 puis écrire dans le terminal :
 
@@ -57,48 +67,49 @@ s : Sauvegarder votre progression.
 
 c : Charger votre ancienne partie.
 
-1 : Choisir le choix 1.
+1 : Choisir l'option 1.
 
-2 : Choisir le choix 1.
+2 : Choisir l'option 2.
 
-3: Choisir le choix 3.
+3: Choisir l'option 3.
 
 # Les choses importantes à savoir
 
 ## dé
-
-Le système de dé ce fait aléatoirement. Pour pouvoir réussir une action, un dé de 0 à 100 va être lancé, il faut que le résultat de votre lancé soit inférieur ou égale à la stats du choix que vous avez décidé de choisir.
+Le système de dé fonctionne aléatoirement. Pour réussir une action, un dé à 100 faces est lancé et vous devez obtenir un résultat inférieur ou égal à la stat correspondante au choix que vous avez fait.
 
 ## Histoire 
 
-Nous avons utilisé une sérialisation/désérialisation Yaml. Ainsi, si nous voulons redéfinir une histoire, nous avons juste à refaire la syntaxe Yaml pour qu'elle ne soit comprise pas notre programme.
+Nous avons utilisé la sérialisation/désérialisation YAML. Ainsi, si nous souhaitons redéfinir une histoire, il suffit de la réécrire en respectant la syntaxe YAML pour qu'elle soit comprise par notre programme.
 
 ```
 2: 
   description: | 
     Très étrange comme façons etc...
+  choix_1: Essayez de les séduire.
   type1: Charisme
   n_1_reussit: 12
   n_1_echec: 3
-  choix_2: l'affronter pour savoir qui soulèvera.
+  choix_2: L'affronter pour déterminer qui va gagner.
   type2: Force
   n_2_reussit: 13
   n_2_echec: 3
   type3: Intelligence
-  choix_3: Le nourrir de protéin pour le rendre aussi puissant qu'un personnage de jojo.
+  choix_3: Le nourrir de protéines pour le rendre aussi puissant qu'un personnage de jojo.
   n_3_reussit: 14
   n_3_echec: 3
   mort: false
 ```
-description : vous aurez juste à mettre vos textes.
+"X:" : définit le numéro de l'étape
+"description "  : cette section est réservée à la saisie de vos textes.
 
-type1 : vous devez décrire sur quel type l'action ou le dé va être utilisé sur quelle stats pour le choix.
+"typeX" : Il est important de spécifier le type d'action pour déterminer à quelle stat la valeur du dé sera comparée afin de déterminer la réussite ou l'échec de l'action.
 
-n_X_reussit : si l'action réussie, vers ou le joueur sera redirigé.
+"n_X_reussite" : si l'action réussit, cette section indique vers quelle étape de l'histoire le joueur sera redirigé.
 
-n_X_echec : si l'action rate, vers ou le joueur sera redirigé.
+"n_X_echec" : si l'action échoue, cette section indique vers quelle étape de l'histoire le joueur sera redirigé.
 
-mort : un booléen qui dit précise si le scénario est un scénario de fin.
+"mort" : il s'agit d'un booléen qui permet de préciser si cette partie de l'histoire est une scène de fin.
 
 # Bibliothèques 
 Les bibliothèques que nous avons utilisées sont définies comme dependances dans le "cargo.toml" de notre projet.
@@ -125,7 +136,8 @@ version = "0.17"
 features = ["event-stream"] 
 
 ```
-# Lien
+# Images
+# Liens
 ## Documentations
   - Doc yaml-rust: https://crates.io/crates/yaml-rust
   - Doc lecture de fichier et sauvegarder des données:
